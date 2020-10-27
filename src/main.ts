@@ -1,6 +1,9 @@
-import { Carrinho } from './Carrinho'
 import { Produto } from './Produto'
+import { Logger } from './Logger'
+import { Marketing } from './Marketing'
+import { Carrinho } from './Carrinho'
 import { Pedido } from './Pedido'
+import { ListaDesejos } from './ListaDesejos'
 
 console.log('ok')
 
@@ -14,16 +17,20 @@ const p7 = new Produto(7, 'Parafusadeira/furadeira De Impacto 1⁄2” (13mm) 20
 const p8 = new Produto(8, 'Honorall Full HD 1080 P Webcam USB Mini Câmera')
 
 const carrinho = new Carrinho()
+carrinho.adicionaObservador(new Logger())
 carrinho.adiciona(p1)
 carrinho.adiciona(p2)
 console.log(carrinho.produtos)
 carrinho.abandona()
 console.log(carrinho.produtos)
+
 carrinho.adiciona(p3)
 carrinho.adiciona(p4)
 carrinho.remove(p3)
 console.log(carrinho.produtos)
 carrinho.adiciona(p5)
+
+carrinho.adicionaObservador(new Marketing())
 const pedido = carrinho.compra()
 console.log(pedido.produtos)
 console.log(carrinho.produtos)
@@ -36,3 +43,27 @@ const pedido2 = carrinho2.compra()
 if (pedido2.produtos.length === 0) {
   console.log('Carrinho vazio')
 }
+
+
+// Lista de Desejos
+
+console.log('LISTA DE DESEJOS')
+
+const listadesejos = new ListaDesejos()
+listadesejos.adicionaObservador(new Logger())
+listadesejos.adiciona(p1)
+listadesejos.adiciona(p2)
+console.log(listadesejos.produtos)
+listadesejos.abandona()
+console.log(listadesejos.produtos)
+listadesejos.adicionaObservador(new Marketing())
+listadesejos.adiciona(p3)
+listadesejos.adiciona(p4)
+listadesejos.remove(p3)
+console.log(listadesejos.produtos)
+listadesejos.adiciona(p5)
+
+listadesejos.removeObservador(new Marketing())
+
+
+

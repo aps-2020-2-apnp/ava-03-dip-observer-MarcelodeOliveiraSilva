@@ -1,7 +1,7 @@
 import { Produto } from './Produto'
 
 export class Pedido {
-  readonly produtos: Produto[]
+  produtos: Produto[]
   constructor(produtos: Produto[]) {
     this.produtos = produtos
   }

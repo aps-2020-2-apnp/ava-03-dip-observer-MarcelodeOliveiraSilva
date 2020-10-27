@@ -1,17 +1,19 @@
 import { Produto } from './Produto'
+import { IObservador } from './IObservador'
 
-export class Marketing {
-  houveAdicao(p: Produto) {
+export class Marketing implements IObservador{
+
+  quandoAdiciona(p: Produto) {
     console.info(`MARKETING: ${p.descricao} foi adicionado`)
   }
-  houveRemocao(p: Produto) {
+  quandoRemove(p: Produto) {
     console.info(`MARKETING: ${p.descricao} foi removido`)
 
   }
-  houveCompra(produtos: Produto[]) {
+  quandoCompra(produtos: Produto[]) {
     console.info(`MARKETING: ${produtos.length} comprado(s)`)
   }
-  houveAbandono(produtos: Produto[]) {
+  quandoAbandona(produtos: Produto[]) {
     console.info(`MARKETING: ${produtos.length} abandonado(s)`)
 
   }

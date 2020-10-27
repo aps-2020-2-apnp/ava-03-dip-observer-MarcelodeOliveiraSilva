@@ -1,17 +1,18 @@
 import { Produto } from './Produto'
+import { IObservador} from './IObservador'
 
-export class Logger {
-  houveAdicao(p: Produto) {
+export class Logger implements IObservador{
+  quandoAdiciona(p: Produto) {
     console.info(`LOGGER: ${p.descricao} foi adicionado`)
   }
-  houveRemocao(p: Produto) {
+  quandoRemove(p: Produto) {
     console.info(`LOGGER: ${p.descricao} foi removido`)
 
   }
-  houveCompra(produtos: Produto[]) {
+  quandoCompra(produtos: Produto[]) {
     console.info(`LOGGER: ${produtos.length} comprado(s)`)
   }
-  houveAbandono(produtos: Produto[]) {
+  quandoAbandona(produtos: Produto[]) {
     console.info(`LOGGER: ${produtos.length} abandonado(s)`)
 
   }
